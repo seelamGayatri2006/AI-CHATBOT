@@ -5,7 +5,13 @@ import os
 
 
 
-client = OpenAI(api_key=os.getenv("OPENAI_API_KEY"))
+OPENAI_API_KEY = os.getenv("OPENAI_API_KEY")
+
+if not OPENAI_API_KEY:
+    st.error("OPENAI_API_KEY not found. Please set it in environment variables.")
+    st.stop()
+
+client = OpenAI(api_key=OPENAI_API_KEY)
 
 
 st.set_page_config(
